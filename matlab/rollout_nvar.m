@@ -3,6 +3,7 @@ function [x_test, out_test] = rollout_nvar(W_out, x_initial, steps, d, include_c
 if nargin < 4
     d = 3;
 end
+
 if nargin < 5
     include_constant = true;
 end
@@ -12,7 +13,9 @@ x_test = zeros(dlin, steps);
 out_test = zeros(1 + dlin + dlin * (dlin + 1) / 2, 1);
 x_test(:, 1) = x_initial;
 for j = 1:(steps - 1)
+
     out_test(1) = include_constant;
+
     out_test(2:(dlin + 1)) = x_test(:, j);
     row = dlin + 2;
     for r = 1:dlin
